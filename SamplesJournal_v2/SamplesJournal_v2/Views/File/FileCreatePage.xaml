@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplesJournal_v2.Views.File.FileCreatePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="{Binding SelectedFileName, StringFormat='Файл: {0}'}"></Label>
+                        <Button Text="Выбрать" Command="{Binding SelectFileCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Шаблон:"></Label>
+                        <Picker ItemsSource="{Binding Templates}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedTemplate}"></Picker>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <Button Text="Создать" Command="{Binding CreateCommand}"></Button>
+                </Frame>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

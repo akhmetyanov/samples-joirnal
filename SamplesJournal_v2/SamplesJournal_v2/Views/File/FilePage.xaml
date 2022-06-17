@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplesJournal_v2.Views.File.FilePage">
+    <ContentPage.Content>
+        <Frame>
+            <StackLayout>
+                
+
+                <Frame>
+                    
+                    <StackLayout>
+
+                        <Label Text="{Binding Name, StringFormat = 'Шаблон: {0}'}"/>
+
+                        <StackLayout>
+                            <Button Text="Редактировать" Command="{Binding ThisToEditeCommand}"></Button>
+                            <Button Text="Сохранить" Command="{Binding SaveThisCommand}"></Button>
+                            <Button Text="Сохранить в CSV" Command="{Binding SaveThisToCsvFileCommand}"></Button>
+                            <Button Text="Сохранить в JSON" Command="{Binding SaveThisToFileCommand}"></Button>
+                            <Button Text="Обновить шаблон" Command="{Binding UpdateTemplateCommand}"></Button>
+                            <Button Text="Удалить" Command="{Binding DeleteThisCommand}"></Button>
+                        </StackLayout>
+
+                    </StackLayout>
+                    
+                </Frame>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

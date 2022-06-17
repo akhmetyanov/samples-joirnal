@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplesJournal_v2.Views.File.FileEditPage">
+    
+    <ContentPage.Title>
+        Редактор
+    </ContentPage.Title>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ListView ItemsSource="{Binding Rows}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}" Command="{Binding OnSelectThis}" TextColor="{Binding TextColor}"></TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

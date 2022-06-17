@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplesJournal_v2.Views.TemplateDictPage">
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Название"></Label>
+                        <Entry Text="{Binding Name}"></Entry>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Button Text="Добавить запись" Command="{Binding AddNewValueCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Значения"></Label>
+                        <ListView ItemsSource="{Binding Values}" HeightRequest="250" SelectedItem="{Binding SelectedValue, Mode=TwoWay}">
+                            
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell 
+                                        Text="{Binding Value, StringFormat='Значние: {0}'}"
+                                        Detail="{Binding Code, StringFormat='Код: {0}'}"
+                                        TextColor="Gray"
+                                        />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Выбранное значение"></Label>
+                        <Entry Placeholder="Значние" Text="{Binding SelectedValue.Value}"></Entry>
+                        <Entry Placeholder="Код" Text="{Binding SelectedValue.Code}"></Entry>
+                        <Button Text="Удалить значение" Command="{Binding DeleteSelectedValue}"></Button>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Button Text="Удалить словарь" Command="{Binding DeleteDictCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+       
+    </ContentPage.Content>
+</ContentPage>

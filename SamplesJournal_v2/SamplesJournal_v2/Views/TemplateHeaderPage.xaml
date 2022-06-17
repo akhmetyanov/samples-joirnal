@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplesJournal_v2.Views.TemplateHeaderPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Название"></Label>
+                        <Entry Text="{Binding Name}"></Entry>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Обработчик: "></Label>
+                        <Picker ItemsSource="{Binding InputTypes}" SelectedItem="{Binding SelectedInputTool, Mode=TwoWay}"></Picker>
+                    </StackLayout>
+                </Frame>
+
+                <Frame IsVisible="{Binding CanSetDefault}">
+                    <StackLayout>
+                        <Label Text="Значение по умолчанию"></Label>
+                        <Entry Text="{Binding DefaultValue}"></Entry>
+                    </StackLayout>
+                </Frame>
+
+                <Frame IsVisible="{Binding CanSetDict}">
+                    <StackLayout>
+                        <Label Text="{Binding SelectedDictName, StringFormat='Словарь: {0}'}"></Label>
+                        <Button Text="Указать" Command="{Binding SetDictPageOpenCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+
+
+                <Frame>
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="Редактирвать"></Label>
+                        <Switch IsToggled="{Binding ToEdit, Mode=TwoWay}"></Switch>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="Отображать поле в Editor"></Label>
+                        <Switch IsToggled="{Binding ShowInEditor, Mode=TwoWay}"></Switch>
+                    </StackLayout>
+                </Frame>
+
+
+                <Frame>
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="Поле должно быть заполнено"></Label>
+                        <Switch IsToggled="{Binding NullAble, Mode=TwoWay}"></Switch>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="Группировать по данному столбцу"></Label>
+                        <Switch IsToggled="{Binding GrupBy, Mode=TwoWay}"></Switch>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Позиция в списке"></Label>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Command="{Binding UpPositionInListHeaderCommand}" Text="Поднять" Grid.Column="0"></Button>
+                            <Button Command="{Binding DownPositionInListHeaderCommand}" Text="Опустить" Grid.Column="1"></Button>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Button Text="Удалить" Command="{Binding DelteHeaderCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamplesJournal_v2.Views.TemplatePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Название"></Label>
+                        <Entry Text="{Binding Name}"></Entry>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Список словарей"></Label>
+
+                        <ListView ItemsSource="{Binding Dicts}" HeightRequest="250">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell  Text="{Binding Name}" Command="{Binding EditDictCommand}"></TextCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Button Text="Добавить словарь" Command="{Binding AddDictCommand}"></Button>
+
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Список полей"></Label>
+
+                        <ListView ItemsSource="{Binding Headers}" HeightRequest="250">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell  Text="{Binding Name}" Command="{Binding EditHeaderCommand}"></TextCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Button Text="Добавить поле" Command="{Binding AddHeaderCommand}"></Button>
+                        <Button Text="Добавить поля из файла" Command="{Binding AddHeaderFromFileCommand}"></Button>
+
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Button Text="Сохранить в файл" Command="{Binding SaveTemplateToFileCommand}"></Button>
+                        <Button Text="Сохранить" Command="{Binding SaveTemplateCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
