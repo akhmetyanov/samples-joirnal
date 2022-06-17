@@ -3,23 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamplesJournal_v2.Views.File.FilesPage">
     <ContentPage.Title>Файлы</ContentPage.Title>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Создать" Command="{Binding GoToCreateFilePageCommand}"/>
-        <ToolbarItem Text="Загрузить из файла" Command="{Binding CreateFromFileCommand}"/>
-    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <ListView ItemsSource="{Binding Files}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <ListView ItemsSource="{Binding Files}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
 
-                            <TextCell Text="{Binding Name}" Command="{Binding SelectThisCommand}"></TextCell>
+                                <TextCell Text="{Binding Name}" Command="{Binding SelectThisCommand}"></TextCell>
 
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </ScrollView>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+
+            <Frame>
+                <StackLayout>
+                    <Button Text="Создать" Command="{Binding GoToCreateFilePageCommand}"/>
+                    <Button Text="Загрузить из файла" Command="{Binding CreateFromFileCommand}"/>
+                </StackLayout>
+            </Frame>
+            
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

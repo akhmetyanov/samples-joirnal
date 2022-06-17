@@ -3,43 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamplesJournal_v2.Views.TemplatesPage">
     <ContentPage.Title>Шаблоны</ContentPage.Title>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem 
-            Text="Добавить"
-            Command="{Binding AddTemplateCommand}"
-            />
 
-        <ToolbarItem 
-            Text="Добавить из файла"
-            Command="{Binding AddTemplateFromFileCommand}"
-            />
-        
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Templates}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
+        <StackLayout>
+            
+            <ScrollView>
+                <CollectionView ItemsSource="{Binding Templates}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame>
+                                <StackLayout>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Name, StringFormat='Шаблон: {0}'}"></Label>
 
-                            <Label Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="1"></Label>
+                                    <Frame>
+                                        <Grid>
 
-                            <Button Grid.Row="1" Grid.Column="0" Text="Редактировать" Command="{Binding EditeTemplateCommand}"></Button>
-                            <Button Grid.Row="1" Grid.Column="1" Text="Удалить" Command="{Binding DeleteTemplateCommand}" CommandParameter="{Binding Id}"></Button>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
 
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+
+
+                                            <Button Grid.Column="0" Text="Редактировать" Command="{Binding EditeTemplateCommand}"></Button>
+                                            <Button Grid.Column="1" Text="Удалить" Command="{Binding DeleteTemplateCommand}" CommandParameter="{Binding Id}"></Button>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+
+            <Frame>
+                <StackLayout>
+                    <Button 
+                        Text="Создать"
+                        Command="{Binding AddTemplateCommand}"
+                        />
+
+                    <Button
+                        Text="Добавить из файла"
+                        Command="{Binding AddTemplateFromFileCommand}"
+                        />
+                </StackLayout>
+            </Frame>
+            
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
