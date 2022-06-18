@@ -13,28 +13,6 @@
                 </Frame>
 
                 <Frame>
-                    <StackLayout>
-                        <Label Text="Обработчик: "></Label>
-                        <Picker ItemsSource="{Binding InputTypes}" SelectedItem="{Binding SelectedInputTool, Mode=TwoWay}"></Picker>
-                    </StackLayout>
-                </Frame>
-
-                <Frame IsVisible="{Binding CanSetDefault}">
-                    <StackLayout>
-                        <Label Text="Значение по умолчанию"></Label>
-                        <Entry Text="{Binding DefaultValue}"></Entry>
-                    </StackLayout>
-                </Frame>
-
-                <Frame IsVisible="{Binding CanSetDict}">
-                    <StackLayout>
-                        <Label Text="{Binding SelectedDictName, StringFormat='Словарь: {0}'}"></Label>
-                        <Button Text="Указать" Command="{Binding SetDictPageOpenCommand}"></Button>
-                    </StackLayout>
-                </Frame>
-
-
-                <Frame>
                     <StackLayout Orientation="Horizontal" >
                         <Label Text="Редактирвать"></Label>
                         <Switch IsToggled="{Binding ToEdit, Mode=TwoWay}"></Switch>
@@ -60,6 +38,27 @@
                     <StackLayout Orientation="Horizontal" >
                         <Label Text="Группировать по данному столбцу"></Label>
                         <Switch IsToggled="{Binding GrupBy, Mode=TwoWay}"></Switch>
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Обработчик: "></Label>
+                        <Picker ItemsSource="{Binding InputTypes}" SelectedItem="{Binding SelectedInputTool, Mode=TwoWay}"></Picker>
+                    </StackLayout>
+                </Frame>
+
+                <Frame IsVisible="{Binding CanSetDefault}">
+                    <StackLayout>
+                        <Label Text="Значение по умолчанию"></Label>
+                        <Entry Text="{Binding DefaultValue}"></Entry>
+                    </StackLayout>
+                </Frame>
+
+                <Frame IsVisible="{Binding CanSetDict}">
+                    <StackLayout>
+                        <Label Text="{Binding SelectedDictName, StringFormat='Словарь: {0}'}"></Label>
+                        <Button Text="Указать" Command="{Binding SetDictPageOpenCommand}"></Button>
                     </StackLayout>
                 </Frame>
 
