@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Collections.Generic;
 using SamplesJournal_v2.Models.Editor;
 using System;
+using System.IO;
 
 namespace SamplesJournal_v2.Models
 {
@@ -16,14 +17,35 @@ namespace SamplesJournal_v2.Models
         public DataBase(string dbPath)
         {
             _dbPath = dbPath;
-            Create();
+            createDatabase(_dbPath);
+            Set();
+        }
+        public bool createDatabase(string dbPath)
+        {
+            try
+            {
+                using (var connection = new SQLiteConnection(dbPath))
+                {
+                    connection.CreateTable<TemplateDbEntity>();
+                    connection.CreateTable<FileDbEntity>();
+
+                    return true;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                return false;
+            }
         }
 
-        async void Create()
+        void Set()
         {
-            _database =  new SQLiteAsyncConnection(_dbPath);
-            await _database.CreateTableAsync<TemplateDbEntity>();
-            await _database.CreateTableAsync<FileDbEntity>();
+            while (!File.Exists(_dbPath))
+            {
+
+            }
+
+            _database = new SQLiteAsyncConnection(_dbPath, SQLiteOpenFlags.ReadWrite);
         }
 
         #region template
