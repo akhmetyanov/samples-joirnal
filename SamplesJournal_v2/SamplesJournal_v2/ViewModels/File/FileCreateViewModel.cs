@@ -2,6 +2,7 @@
 using SamplesJournal_v2.Models.Editor;
 using SamplesJournal_v2.Models.Template;
 using SamplesJournal_v2.ViewModels.FIle;
+using SamplesJournal_v2.Views;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -59,18 +60,32 @@ namespace SamplesJournal_v2.ViewModels.File
         public Template SelectedTemplate { get; set; }
         void CerateFile()
         {
-            // 1 - прочитать CSV файл
             if (_result == null || SelectedTemplate == null) { return; }
 
+            if (SelectedTemplate.Headers.Count == 0)
+            {
+                string[] msq = { "Не заданы поля в шаблоне" };
+                _navigation.PushAsync(new MessagePage(msq));
+                return;
+            }
+
+            // 1 - прочитать CSV файл
             var fileRows = new List<EditorFileRow>();
             string[] lines = System.IO.File.ReadAllLines(_result.FullPath);
             var fileHeaders = lines[0].Split(';');
+
+            if (fileHeaders.Length== 0)
+            {
+                string[] msq = { "Не удалось прочитать заголовки из файла CSV" };
+                _navigation.PushAsync(new MessagePage(msq));
+                return;
+            }
 
             // На основе полей из шаблона определить индексы полей которые нужно прочитать
             var headerIndexToRead = new Dictionary<int, Guid>();
             for (int i = 0; i < fileHeaders.Length; i++)
             {
-                var finded = SelectedTemplate.Headers.Where(h => h.Name == fileHeaders[i]).First();
+                var finded = SelectedTemplate.Headers.Where(h => h.Name == fileHeaders[i]).FirstOrDefault();
 
                 if (finded != null)
                 {
